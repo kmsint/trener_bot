@@ -1,0 +1,6 @@
+venv/
+trener_bot/trenerbot-339020-39d5c4125176.json
+__pycache__
+trener_bot/config.py
+*.DS_Store
+._*
