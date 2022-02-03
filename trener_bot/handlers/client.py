@@ -1,12 +1,12 @@
 from aiogram import Dispatcher, types
-from create_bot import dp, bot
+from create_bot import bot
 from keyboards import kb_client
 from services import get_current_date, get_training_by_date
 
 # @dp.message_handler(commands=['start', 'help'])
 async def command_start(message : types.Message):
     print(message.text)
-    await bot.send_message(message.from_user.id, 'Потренеруемся, сучка!', reply_markup=kb_client)
+    await bot.send_message(message.from_user.id, 'Потренеруемся!', reply_markup=kb_client)
     # await bot.send_message(message.from_user.id, 'Для бота доступны следующие команды:')
     # await bot.send_message(message.from_user.id, '1. Тренировка сегодня\n2. Следующая тренировка\n3. Уже выполнено\n4. Сколько осталось')
     # await bot.send_message(message.from_user.id, reply_markup=kb_client)
@@ -22,17 +22,17 @@ async def command_today_training(message : types.Message):
 
 # @dp.message_handler(commands=['Следующая тренировка'])
 async def command_next_traning(message : types.Message):
-    await bot.send_message(message.from_user.id, 'Потренеруемся, сучка!')
+    await bot.send_message(message.from_user.id, 'Потренеруемся!')
 
 
 # @dp.message_handler(commands=['Уже выполнено'])
 async def command_done(message : types.Message):
-    await bot.send_message(message.from_user.id, 'Потренеруемся, сучка!')
+    await bot.send_message(message.from_user.id, 'Потренеруемся!')
 
 
 # @dp.message_handler(commands=['Сколько осталось'])
 async def command_to_do(message : types.Message):
-    await bot.send_message(message.from_user.id, 'Потренеруемся, сучка!')
+    await bot.send_message(message.from_user.id, 'Потренеруемся!')
 
 
 def register_handlers_client(dp : Dispatcher):

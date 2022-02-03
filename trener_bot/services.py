@@ -12,13 +12,16 @@ def connect_to_gs(gs_document):
 def get_current_date():
     return datetime.now().strftime('%-d-%m-%Y')
 
+def get_current_time():
+    return datetime.now().strftime('%H:%M:%S')
+
 
 def get_training_by_date(date):
     wks = connect_to_gs(GS_DOCUMENT)
     current_date_cell = wks.find(date)
     if current_date_cell:
         current_training = wks.get_row(current_date_cell[0].row, include_tailing_empty=False)
-        return f'Тренировка на {current_training[0]}:\n{current_training[1:]}'
+        return current_training[0], current_training[1:]
     return 'Сегодня тренировки нету'
 
 
@@ -89,7 +92,9 @@ def format_output(training_dict):
 
 
 def format_training_output(training_tuple):
+    if training_tuple == 'Сегодня тренировки нету':
+        return 'Сегодня тренировки нету'
     training = '\n'.join(training_tuple[1])
     return f'Тренировка {training_tuple[0]}:\n{training}'
 
-print(format_output(get_workouts_left()))
+#print(format_output(get_workouts_left()))
