@@ -41,3 +41,4 @@ def register_handlers_client(dp : Dispatcher):
     dp.register_message_handler(command_next_traning, commands=['Следующая'])
     dp.register_message_handler(command_done, commands=['Уже выполнено'])
     dp.register_message_handler(command_to_do, commands=['Сколько осталось'])
+    

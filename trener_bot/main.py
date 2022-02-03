@@ -3,7 +3,7 @@ from aiogram.utils import executor
 from create_bot import dp
 import aioschedule, asyncio
 from handlers.other import reminder
-from config import USER_ID
+
 
 async def on_startup(_):
     print('Бот вышел в онлайн')
@@ -12,13 +12,15 @@ async def on_startup(_):
 
 logging.basicConfig(level=logging.INFO)
 
+
 async def scheduler():
     aioschedule.every().day.at('8:00').do(reminder)
     aioschedule.every().day.at('15:00').do(reminder)
-    aioschedule.every().day.at('20:00').do(reminder)
+    aioschedule.every().day.at('23:02').do(reminder)
     while True:
         await aioschedule.run_pending()
         await asyncio.sleep(1)
+
 
 from handlers import client, admin, other
 
