@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 async def scheduler():
     aioschedule.every().day.at('8:00').do(reminder)
     aioschedule.every().day.at('15:00').do(reminder)
-    aioschedule.every().day.at('23:02').do(reminder)
+    aioschedule.every().day.at('20:00').do(reminder)
     while True:
         await aioschedule.run_pending()
         await asyncio.sleep(1)

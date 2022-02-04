@@ -2,6 +2,8 @@ from config import CLIENT_SECRET, GS_DOCUMENT
 import pygsheets
 from datetime import datetime, timedelta
 
+LIGHT_GREEN_COLOR = (0.7137255, 0.84313726, 0.65882355, 0)
+
 
 def connect_to_gs(gs_document):
     gc = pygsheets.authorize(service_file = CLIENT_SECRET)
@@ -97,4 +99,16 @@ def format_training_output(training_tuple):
     training = '\n'.join(training_tuple[1])
     return f'Тренировка {training_tuple[0]}:\n{training}'
 
+
+def colorize_row_by_date(date):
+    wks = connect_to_gs(GS_DOCUMENT)
+    current_date_cell = wks.find(date)
+
+    if current_date_cell:
+        current_training = wks.get_row(current_date_cell[0].row, returnas='range', include_tailing_empty=False)
+        model_cell = pygsheets.Cell(current_date_cell[0].label)
+        model_cell.color = LIGHT_GREEN_COLOR
+        current_training.apply_format(model_cell, fields="userEnteredFormat.backgroundColor")
+
 #print(format_output(get_workouts_left()))
+#colorize_row_by_date('4-02-2022')

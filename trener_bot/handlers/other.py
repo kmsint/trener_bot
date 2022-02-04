@@ -17,6 +17,7 @@ async def ok_call(callback : types.CallbackQuery):
         await callback.answer('Я напомню тебе позже!', show_alert=True)
     elif callback.data == 'done':
         await callback.message.answer('💪')
+        colorize_row_by_date(get_current_date())
     await callback.message.delete()
     await callback.answer()
 
